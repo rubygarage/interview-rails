@@ -1,0 +1,193 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 2.6
+  TargetRailsVersion: 6.0
+  NewCops: enable
+  Exclude:
+    - bin/**/*
+    - db/**/*
+    - vendor/**/*
+    - spec/fixtures/**/*
+    - tmp/**/*
+    - node_modules/**/*
+
+Lint/MissingSuper:
+  Enabled: false
+
+Rails:
+  Enabled: true
+
+# Style -----------------------------------------------------------------------
+
+Style/RedundantFetchBlock:
+  Exclude:
+    - config/puma.rb
+
+Style/Documentation:
+  Enabled: false
+
+Style/ParallelAssignment:
+  Enabled: false
+
+Style/RegexpLiteral:
+  Enabled: false
+
+Style/RescueModifier:
+  Exclude:
+    - app/concepts/api/v1/users/lib/service/email_token.rb
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - app/concepts/**/*
+    - app/controllers/**/*
+    - app/workers/**/*
+
+Style/Lambda:
+  Exclude:
+    - app/endpoints/**/*
+    - lib/macro/**/*
+
+Style/SignalException:
+  Exclude:
+    - app/concepts/**/*
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - app/concepts/api/v1/users/verifications/operation/show.rb
+
+Rails/IndexWith:
+  Exclude:
+    - lib/macro/schema.rb
+
+# Metrics ---------------------------------------------------------------------
+Metrics/ParameterLists:
+  Exclude:
+    - lib/macro/policy.rb
+
+Metrics/BlockLength:
+  ExcludedMethods:
+    - register
+
+  Exclude:
+    - config/**/*
+    - Rakefile
+    - lib/tasks/**/*.rake
+    - spec/**/*
+    - config/routes.rb
+
+Metrics/AbcSize:
+  Exclude:
+    - app/controllers/concerns/default_endpoint.rb
+    - lib/macro/*.rb
+
+Metrics/MethodLength:
+  Max: 15
+  Exclude:
+    - lib/macro/**/*
+
+# Naming ----------------------------------------------------------------------
+
+Naming/MethodName:
+  Exclude:
+    - lib/macro/**/*
+
+# Lint ------------------------------------------------------------------------
+Lint/ConstantDefinitionInBlock:
+  Exclude:
+    - spec/lib/**/*
+
+Lint/UnreachableCode:
+  Exclude:
+    - app/concepts/**/*
+
+Lint/UselessMethodDefinition:
+  Exclude:
+    - app/concepts/api/v1/lib/service/json_api.rb
+
+# Layout ----------------------------------------------------------------------
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - app/controllers/concerns/default_endpoint.rb
+
+Layout/HashAlignment:
+  Exclude:
+    - app/controllers/concerns/default_endpoint.rb
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/ClassStructure:
+  Enabled: true
+  Categories:
+    module_inclusion:
+      - include
+      - prepend
+      - extend
+    associations:
+      - has_one
+      - has_many
+      - belongs_to
+      - has_and_belongs_to_many
+  ExpectedOrder:
+      - module_inclusion
+      - constants
+      - associations
+      - public_class_methods
+      - initializer
+      - public_methods
+      - protected_methods
+      - private_methods
+
+# RSpec -----------------------------------------------------------------------
+
+RSpec/VariableName:
+  Exclude:
+    - spec/requests/**/*
+    - spec/support/shared_examples/request/*
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/MultipleDescribes:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Max: 22
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
+RSpec/MessageChain:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
+
+RSpec/FilePath:
+  Exclude:
+    - spec/concepts/**/*
+
+RSpec/DescribeClass:
+  Exclude:
+    - spec/tasks/**/*
+
+RSpec/ContextWording:
+  Exclude:
+    - spec/support/shared_contexts/**/*
+
+# Rails -----------------------------------------------------------------------
+
+Rails/RakeEnvironment:
+  Enabled: false
